@@ -14,7 +14,7 @@ rand      = "0.8.5"
 thiserror = "1.0.64"
 tinyvec   = { version = "1.8.0", features = ["std"] }
 
-anyhow    = { version = "1.0.89", optional = true }
+anyhow    = { version = "1.0.90", optional = true }
 clap      = { version = "4.5.20", features = ["derive"], optional = true }
 
 [[bin]]
