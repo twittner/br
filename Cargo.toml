@@ -8,7 +8,7 @@ executable = ["dep:anyhow", "dep:clap"]
 
 [dependencies]
 argon2    = { version = "0.5.3", features = ["std", "zeroize"] }
-aws-lc-rs = "1.10.0"
+aws-lc-rs = "1.11.1"
 bit-vec   = "0.8.0"
 rand      = "0.8.5"
 thiserror = "1.0.68"
