@@ -3,7 +3,7 @@ use std::{fs::{self, File}, io::{self, BufReader, BufWriter, Read, Write}, path:
 use argon2::{Algorithm, Argon2, ParamsBuilder, Version};
 use aws_lc_rs::{aead::{self, Aad, Nonce, RandomizedNonceKey, AES_256_GCM, NONCE_LEN}, cipher::AES_256_KEY_LEN, error::Unspecified};
 use bit_vec::BitVec;
-use rand::{rngs::OsRng, RngCore};
+use rand::{rngs::OsRng, TryRngCore};
 use tinyvec::TinyVec;
 
 const SALT_LEN: usize = 24;
@@ -41,7 +41,7 @@ fn join(inputs: &[BitVec]) -> Result<Vec<u8>, Error> {
 /// Generate fresh salt for key derivation.
 fn fresh_salt() -> [u8; SALT_LEN] {
     let mut salt = [0u8; SALT_LEN];
-    OsRng.fill_bytes(&mut salt);
+    OsRng.try_fill_bytes(&mut salt).unwrap();
     salt
 }
 
