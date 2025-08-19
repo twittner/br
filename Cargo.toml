@@ -11,7 +11,7 @@ argon2    = { version = "0.5.3", features = ["std", "zeroize"] }
 aws-lc-rs = "1.13.0"
 bit-vec   = "0.8.0"
 rand      = "0.9.0"
-thiserror = "2.0.11"
+thiserror = "2.0.15"
 tinyvec   = { version = "1.9.0", features = ["std"] }
 
 anyhow    = { version = "1.0.95", optional = true }
