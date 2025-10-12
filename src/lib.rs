@@ -133,7 +133,8 @@ pub fn backup(archive: &Path, num: u8, target: &Path, password: Option<String>) 
     bytes.extend_from_slice(&slt);
 
     for (i, part) in split(num, &bytes).into_iter().enumerate() {
-        let dest = target.join(archive.with_extension(format!("{i}")));
+        let dest = target.join(archive.file_name().expect("archive is file")).with_extension(format!("{i}"));
+        println!("writing {dest:?}");
         let (b, n) = to_bytes(&part);
         let mut w = BufWriter::new(File::create(dest)?);
         w.write_all(&[header(n)])?;
