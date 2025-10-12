@@ -117,6 +117,10 @@ pub fn backup(archive: &Path, num: u8, target: &Path, password: Option<String>) 
         return Err(Error::Fs(format!("{target:?} is not a directory")))
     }
 
+    let Some(archive_name) = archive.file_name() else {
+        return Err(Error::Fs(format!("archive {archive:?} has no file name")))
+    };
+
     let password =
         if let Some(p) = password {
             p
@@ -133,7 +137,7 @@ pub fn backup(archive: &Path, num: u8, target: &Path, password: Option<String>) 
     bytes.extend_from_slice(&slt);
 
     for (i, part) in split(num, &bytes).into_iter().enumerate() {
-        let dest = target.join(archive.file_name().expect("archive is file")).with_extension(format!("{i}"));
+        let dest = target.join(archive_name).with_extension(format!("{i}"));
         println!("writing {dest:?}");
         let (b, n) = to_bytes(&part);
         let mut w = BufWriter::new(File::create(dest)?);
