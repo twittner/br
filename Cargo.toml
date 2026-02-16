@@ -15,7 +15,7 @@ thiserror = "2.0.11"
 tinyvec   = { version = "1.10.0", features = ["std"] }
 
 anyhow    = { version = "1.0.95", optional = true }
-clap      = { version = "4.5.28", features = ["derive"], optional = true }
+clap      = { version = "4.5.58", features = ["derive"], optional = true }
 
 [[bin]]
 name = "br"
